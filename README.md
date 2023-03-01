@@ -119,41 +119,41 @@ the model uses mel-band energies extracted using a hop length of 200 ms and 64 m
 
 	Layer (type)                 Output Shape              Param #   
 	=================================================================
-	input_1 (InputLayer)        [(None, 1, 200, 64)]      0         
+	input_1 (InputLayer)        [(None, 1, 200, 64)]        0         
 	_________________________________________________________________
-	conv2d 		                (None, 128, 200, 64)      1280      
+	conv2d                      (None, 128, 200, 64)        1280      
 	_________________________________________________________________
-	batch_normalization 		(None, 128, 200, 64)      256            
+	batch_normalization         (None, 128, 200, 64)        256            
 	_________________________________________________________________
-	max_pooling2d 				(None, 128, 200, 12)      0         
+	max_pooling2d               (None, 128, 200, 12)        0         
 	_________________________________________________________________
-	dropout 		            (None, 128, 200, 12)      0         
+	dropout                     (None, 128, 200, 12)        0         
 	_________________________________________________________________
-	conv2d_1 		            (None, 128, 200, 12)      147584    
+	conv2d_1                    (None, 128, 200, 12)        147584    
 	_________________________________________________________________
-	batch_normalization_1       (None, 128, 200, 12)      256       
+	batch_normalization_1       (None, 128, 200, 12)        256       
 	_________________________________________________________________
-	max_pooling2d_1       		(None, 128, 200, 6)       0         
+	max_pooling2d_1             (None, 128, 200, 6)         0         
 	_________________________________________________________________
-	dropout_1 		            (None, 128, 200, 6)       0         
+	dropout_1                   (None, 128, 200, 6)         0         
 	_________________________________________________________________
-	conv2d_2           			(None, 128, 200, 6)       147584    
+	conv2d_2                    (None, 128, 200, 6)         147584    
 	_________________________________________________________________
-	batch_normalization_2 		(None, 128, 200, 6)       256           
+	batch_normalization_2       (None, 128, 200, 6)         256           
 	_________________________________________________________________
-	max_pooling2d_2  			(None, 128, 200, 3)       0         
+	max_pooling2d_2             (None, 128, 200, 3)         0         
 	_________________________________________________________________
-	dropout_2            		(None, 128, 200, 3)       0         
+	dropout_2                   (None, 128, 200, 3)         0         
 	_________________________________________________________________
-	permute            			(None, 200, 128, 3)       0         
+	permute                     (None, 200, 128, 3)         0         
 	_________________________________________________________________
-	reshape_1           		(None, 200, 384)          0         
+	reshape_1                   (None, 200, 384)            0         
 	_________________________________________________________________
-	bidirectional 			 	(None, 200, 64)           80256           
+	bidirectional               (None, 200, 64)             80256           
 	_________________________________________________________________
-	Linear_1					(None, 200, 32)           2080            
+	Linear_1                    (None, 200, 32)             2080            
 	_________________________________________________________________
-	Linear_2				    (None, 200, 17)           561         
+	Linear_2                    (None, 200, 17)             561         
 	=================================================================
 
   
@@ -162,9 +162,9 @@ the model uses mel-band energies extracted using a hop length of 200 ms and 64 m
 The cross-validation setup is used to evaluate the performance of the baseline system. Results are calculated using Pytorch in GPU mode (using Nvidia Tesla V100 GPU card). 
  
     
-	| 	       | segment-based ER | segment-based F1 |	PSDS segment-based macro |	PSDS segment-based micro |
+	|          | segment-based ER | segment-based F1 |  PSDS segment-based macro |  PSDS segment-based micro |
 	|----------|------------------|------------------|---------------------------|---------------------------|
-	| Baseline | 		0.48 	  |       70.1%   	 |			62.7% 	         |         	63.9%            |
+	| Baseline |      0.48        |       70.1%   	 |        62.7%              |         	63.9%            |
 
                                                                                 
 
@@ -187,26 +187,26 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
 ### File structure
 
       .
-      ├── task4b.py								# Baseline system for subtask B
+      ├── task4b.py                                   # Baseline system for subtask B
       |
-      ├── utils.py								# Common functions shared between tasks
-      ├── data_generator.py						# File for the dataset
-	  ├── extract_features.py					# Functions to extract mel-band features and normalize
-	  ├── config.py								# Common parameters 
-	  ├── evaluate.py							# Perform model evaluation, sed-eval segment-based
-	  ├── model.py								# CRNN model implementation
+      ├── utils.py                                    # Common functions shared between tasks
+      ├── data_generator.py                           # File for the dataset
+	  ├── extract_features.py                         # Functions to extract mel-band features and normalize
+	  ├── config.py                                   # Common parameters 
+	  ├── evaluate.py                                 # Perform model evaluation, sed-eval segment-based
+	  ├── model.py                                    # CRNN model implementation
       |
-	  ├── development_folds						# Folder with the splits for 5-CV
+	  ├── development_folds                           # Folder with the splits for 5-CV
 	  |		- fold1_train.csv
 	  |		- fold1_val.csv
 	  |		- fold1_test.csv
 	  |		- ...	
 	  ├── metadata
-	  |		- development_metadata.csv			# File duration information to calcualte sed-scores-eval
-	  |		- gt_dev.csv						# Ground truth labels (hard-labels)
+	  |		- development_metadata.csv        # File duration information to calcualte sed-scores-eval
+	  |		- gt_dev.csv                      # Ground truth labels (hard-labels)
 	  |
-      ├── README.md								# This file
-      └── requirements.txt						# External module dependencies
+      ├── README.md                                   # This file
+      └── requirements.txt                            # External module dependencies
 
 Changelog
 =========
