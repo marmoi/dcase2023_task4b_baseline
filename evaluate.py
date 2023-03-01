@@ -33,7 +33,7 @@ def eval_meta(output_folder, audio_name, framewise_output):
 
     sed_scores_eval.io.write_sed_scores(
         framewise_output, os.path.join(output_folder, audio_name +'.tsv'),
-        timestamps=timestamps, event_classes=config.labels_soft
+        timestamps=timestamps, event_classes=config.labels_hard
     )
 
 

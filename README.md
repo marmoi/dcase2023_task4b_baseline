@@ -76,7 +76,7 @@ The task specific baseline system is implemented in file `model.py`.
 
 #### System description
 
-The system implements a convolutional recurren neural network (CRNN) based approach, 
+The system implements a convolutional recurrent neural network (CRNN) based approach, 
 with three CNN layers and one bi-directional gated recurrent unit (GRU) layer. As input, 
 the model uses mel-band energies extracted using a hop length of 200 ms and 64 mel filter banks. 
 
@@ -159,16 +159,26 @@ the model uses mel-band energies extracted using a hop length of 200 ms and 64 m
   
 #### Results for development dataset
 
-The cross-validation setup is used to evaluate the performance of the baseline system. Results are calculated using Pytorch in GPU mode (using Nvidia Tesla V100 GPU card). 
+The cross-validation setup is used to evaluate the performance of the baseline system.
+Micro-scores and macro-F1 score are calculated using sed-eval toolbox segment-based 1 second while
+macro PSDS-F1 is calculated using sed-scores-eval segment-based 1 second. 
  
     
-	|          | segment-based ER | segment-based F1 |  PSDS segment-based macro |  PSDS segment-based micro |
-	|----------|------------------|------------------|---------------------------|---------------------------|
-	| Baseline |      0.48        |       70.1%   	 |        62.7%              |         	63.9%            |
+	|          |   ER_m   |   F1_m   |    F1_M   |    F1_{PSDS}   |
+	|----------|----------|----------|-----------|----------------|
+	| Baseline |  0.479   |  71.54%  |   35.21%  |    44.13%      |
 
                                                                                 
 
 **Note:** The reported system performance is not exactly reproducible due to varying setups. However, you should be able obtain very similar results.
+
+
+#### Model size
+- Total params: 380,113
+- Trainable params: 380,113
+- Non-trainable params: 0
+- MACCs (M): 563.741
+- Params size (MB): 1.52
 
 
 Usage

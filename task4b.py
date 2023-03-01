@@ -10,7 +10,6 @@ import config
 import sed_eval
 import pandas as pd
 from data_generator import maestroDataset
-from torchsummary import summary
 
 
 def load_merged_data(_feat_folder, _lab_folder,  _fold=None):
@@ -96,9 +95,9 @@ def train():
         if 'cuda' in device:
             modelcrnn.to(device)
         print('\nCreate model:')
-
-        import nessi
-        nessi.get_model_size(modelcrnn, 'torch' ,input_size=(1,seq_len, 64))
+        if fold == 1:
+            import nessi
+            nessi.get_model_size(modelcrnn, 'torch' ,input_size=(1,seq_len, 64))
 
         # Optimizer
         optimizer = optim.Adam(modelcrnn.parameters(), lr=learning_rate, betas=(0.9, 0.999), eps=1e-08, weight_decay=0., amsgrad=False)
@@ -168,6 +167,7 @@ def train():
                     pat_cnt = 0
                     pat_learn_rate = 0
                     output = segment_based_metrics_batch.result_report_class_wise()
+
                     print(output)
                     torch.save(best_model.state_dict(), f'{output_model}/best_fold{fold}.bin')
 
@@ -272,7 +272,12 @@ def train():
     overall_segment_based_metrics_f1 = segment_based_metrics_all_folds.overall_f_measure()
     f1_overall_1sec_list = overall_segment_based_metrics_f1['f_measure']
     er_overall_1sec_list = overall_segment_based_metrics_ER['error_rate']
-    print(f'\nOverall segment based metrics - ER: {round(er_overall_1sec_list,3)} F1: {round(f1_overall_1sec_list,3)} ')
+    print(f'\nMicro segment based metrics - ER: {round(er_overall_1sec_list,3)} F1: {round(f1_overall_1sec_list*100,2)} ')
+    class_wise_metrics = segment_based_metrics_all_folds.results_class_wise_metrics()
+    macroFs = []
+    for c in class_wise_metrics:
+        macroFs.append(class_wise_metrics[c]["f_measure"]["f_measure"])
+    print(f'\nMacro segment based F1: {round((sum(np.nan_to_num(macroFs))/config.classes_num_hard)*100,2)} ')
     print('\n')
     path_groundtruth = 'metadata/gt_dev.csv'
     # Calculate PSDS SED metrics
