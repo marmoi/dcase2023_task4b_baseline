@@ -1,0 +1,11 @@
+numpy
+pytorch 
+torchvision 
+torchaudio 
+pytorch-cuda=11.6
+librosa
+pandas
+sklearn
+sed_eval
+dcase_util
+sed_scores_eval
