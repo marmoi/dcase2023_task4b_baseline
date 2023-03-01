@@ -159,9 +159,9 @@ the model uses mel-band energies extracted using a hop length of 200 ms and 64 m
   
 #### Results for development dataset
 
-The cross-validation setup is used to evaluate the performance of the baseline system.
-Micro-scores and macro-F1 score are calculated using sed-eval toolbox segment-based 1 second while
-macro PSDS-F1 is calculated using sed-scores-eval segment-based 1 second. 
+A cross-validation setup is used to evaluate the performance of the baseline system.
+Micro-averaged-scores (ER_m, F1_m) and macro-averaged-score (F1_M) are calculated using [sed-eval](https://tut-arg.github.io/sed_eval/index.html) toolbox 
+segment-based 1 second. Macro-averaged score PSDS (F1_{PSDS}) is calculated using [sed-scores-eval](https://github.com/fgnt/sed_scores_eval) segment-based 1 second. 
  
     
 	|          |   ER_m   |   F1_m   |    F1_M   |    F1_{PSDS}   |
