@@ -11,7 +11,7 @@ Getting started
 
 1. Clone repository from [Github](https://github.com/marmoi/dcase2023_task4b_baseline).
 2. Install requirements with command: `pip install -r requirements.txt`.
-3. Extract features from the audio files previously downloaded `python feature_extraction.py`.
+3. Extract features from the audio files **previously** downloaded `python feature_extraction.py`.
 4. Run the task specific application with default settings `python task4b.py` or  `./task4b.py`
 
 
@@ -72,7 +72,7 @@ This task is concerned about another type of training data:
 
 
 
-The task specific baseline system is implemented in file `task4b.py`.
+The task specific baseline system is implemented in file `model.py`.
 
 #### System description
 
@@ -171,11 +171,6 @@ The cross-validation setup is used to evaluate the performance of the baseline s
 **Note:** The reported system performance is not exactly reproducible due to varying setups. However, you should be able obtain very similar results.
 
 
-### Model size
-
-
-
-
 Usage
 =====
 
@@ -187,7 +182,7 @@ For running the CRNN model:
 Code
 ====
 
-The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) toolbox, see [manual for tutorials](https://dcase-repo.github.io/dcase_util/index.html). The machine learning part of the code is built on [TensorFlow (v2.1.0)](https://www.tensorflow.org/).
+The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) toolbox, see [manual for tutorials](https://dcase-repo.github.io/dcase_util/index.html). The machine learning part of the code is built on [Pytorch (v1.10.2)](https://pytorch.org/).
 
 ### File structure
 
@@ -199,7 +194,17 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
 	  ├── extract_features.py					# Functions to extract mel-band features and normalize
 	  ├── config.py								# Common parameters 
 	  ├── evaluate.py							# Perform model evaluation, sed-eval segment-based
+	  ├── model.py								# CRNN model implementation
       |
+	  ├── development_folds						# Folder with the splits for 5-CV
+	  |		- fold1_train.csv
+	  |		- fold1_val.csv
+	  |		- fold1_test.csv
+	  |		- ...	
+	  ├── metadata
+	  |		- development_metadata.csv			# File duration information to calcualte sed-scores-eval
+	  |		- gt_dev.csv						# Ground truth labels (hard-labels)
+	  |
       ├── README.md                             # This file
       └── requirements.txt                      # External module dependencies
 
