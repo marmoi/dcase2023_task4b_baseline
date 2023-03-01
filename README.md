@@ -176,7 +176,7 @@ Usage
 
 For running the CRNN model:
 - `extract_features.py`, first extract mel-bands and normalize data
-- `task4b.py`, DCASE2023 baseline for Task 1B
+- `task4b.py`, DCASE2023 baseline for Task4B
 
 
 Code
@@ -187,10 +187,10 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
 ### File structure
 
       .
-      ├── task4b.py                             # Baseline system for subtask B
+      ├── task4b.py								# Baseline system for subtask B
       |
-      ├── utils.py                              # Common functions shared between tasks
-      ├── data_generator.py  					# File for the dataset
+      ├── utils.py								# Common functions shared between tasks
+      ├── data_generator.py						# File for the dataset
 	  ├── extract_features.py					# Functions to extract mel-band features and normalize
 	  ├── config.py								# Common parameters 
 	  ├── evaluate.py							# Perform model evaluation, sed-eval segment-based
@@ -205,8 +205,8 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
 	  |		- development_metadata.csv			# File duration information to calcualte sed-scores-eval
 	  |		- gt_dev.csv						# Ground truth labels (hard-labels)
 	  |
-      ├── README.md                             # This file
-      └── requirements.txt                      # External module dependencies
+      ├── README.md								# This file
+      └── requirements.txt						# External module dependencies
 
 Changelog
 =========
