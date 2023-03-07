@@ -215,6 +215,7 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
 	  |		- development_metadata.csv        # File duration information to calcualte sed-scores-eval
 	  |		- gt_dev.csv                      # Ground truth labels (hard-labels)
 	  |
+      ├── development_split.csv                       # List all the files
       ├── README.md                                   # This file
       └── requirements.txt                            # External module dependencies
 
