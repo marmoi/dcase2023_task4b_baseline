@@ -185,9 +185,9 @@ def merge_annotations_into_folds(feat_folder, labeltype, output_folder):
 
 if __name__ == '__main__':
     # path to all the data
-    audio_path = 'C:/Users/qcirma/Desktop/data/audio'
-    annotation_path = 'C:/Users/qcirma/Desktop/data/annotation'
-    dev_file = '../code/output/development_split.csv'
+    audio_path = 'data/audio'
+    annotation_path = 'data/annotation'
+    dev_file = 'development_split.csv'
     
     # Output
     feat_folder = 'features_mbe/'
@@ -195,7 +195,7 @@ if __name__ == '__main__':
 
 
     # Extract mel features for all the development data
-    #extract_data(dev_file, audio_path, annotation_path, feat_folder)
+    extract_data(dev_file, audio_path, annotation_path, feat_folder)
 
     # Normalize data into folds
     output_folder = 'development/features'
