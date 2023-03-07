@@ -24,15 +24,30 @@ def find_contiguous_regions(activity_array):
     return change_indices.reshape((-1, 2))
 
 
-
-
-def eval_meta(output_folder, audio_name, framewise_output):
+def eval_meta_soft(output_folder, audio_name, framewise_output):
 
     hop_length_seconds = config.hop_size / config.sample_rate
     timestamps = np.arange(0, framewise_output.shape[0] + 1) * hop_length_seconds
 
     sed_scores_eval.io.write_sed_scores(
         framewise_output, os.path.join(output_folder, audio_name +'.tsv'),
+        timestamps=timestamps, event_classes=config.labels_soft
+    )
+
+
+def eval_meta_hard(output_folder, audio_name, framewise_output):
+
+    new_framewise = []
+    for n, label in enumerate(config.class_labels_soft):
+        if label in config.class_labels_hard:
+            new_framewise.append(framewise_output[:,n])
+    new_framewise = np.array(new_framewise).T
+
+    hop_length_seconds = config.hop_size / config.sample_rate
+    timestamps = np.arange(0, new_framewise.shape[0] + 1) * hop_length_seconds
+
+    sed_scores_eval.io.write_sed_scores(
+        new_framewise, os.path.join(output_folder, audio_name +'.tsv'),
         timestamps=timestamps, event_classes=config.labels_hard
     )
 

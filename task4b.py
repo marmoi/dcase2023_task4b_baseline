@@ -73,6 +73,9 @@ def train():
     output_folder = 'dev_txt_scores'
     create_folder(output_folder)
 
+    output_folder_soft = 'dev_txt_scores_soft'
+    create_folder(output_folder_soft)
+
     for fold in holdout_fold:
 
         # Load features and labels
@@ -216,8 +219,9 @@ def train():
                 framewise_output = batch_output.squeeze().detach().cpu().numpy()
                 
                 # output for each file
-                eval_meta(output_folder, audio_name, framewise_output)
-
+                eval_meta_hard(output_folder, audio_name, framewise_output)
+                eval_meta_soft(output_folder_soft, audio_name, framewise_output)
+                
                 # Append to evaluate the whole test fold at once
                 if nbatch == 0:
                     fold_target = target
