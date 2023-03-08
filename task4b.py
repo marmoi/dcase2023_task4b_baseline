@@ -98,9 +98,7 @@ def train():
         if 'cuda' in device:
             modelcrnn.to(device)
         print('\nCreate model:')
-        if fold == 1:
-            import nessi
-            nessi.get_model_size(modelcrnn, 'torch' ,input_size=(1,seq_len, 64))
+
 
         # Optimizer
         optimizer = optim.Adam(modelcrnn.parameters(), lr=learning_rate, betas=(0.9, 0.999), eps=1e-08, weight_decay=0., amsgrad=False)
@@ -281,11 +279,13 @@ def train():
     macroFs = []
     for c in class_wise_metrics:
         macroFs.append(class_wise_metrics[c]["f_measure"]["f_measure"])
+    
     print(f'\nMacro segment based F1: {round((sum(np.nan_to_num(macroFs))/config.classes_num_hard)*100,2)} ')
+    
     print('\n')
     path_groundtruth = 'metadata/gt_dev.csv'
-    # Calculate PSDS SED metrics
-    get_PSDS(path_groundtruth, output_folder)
+    # Calculate threshold independent metrics
+    get_threshold_independent(path_groundtruth, output_folder)
 
 
 # python train_soft.py 
