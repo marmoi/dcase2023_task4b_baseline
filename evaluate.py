@@ -102,8 +102,8 @@ def metric_perbatch(segment_based_metrics, framewise_output, target):
 
 
 
-def get_PSDS(path_groundtruth, path_scores):
-    # Calculate PSDS
+def get_threshold_independent(path_groundtruth, path_scores):
+    # Calculate threshold independent
 
     f_best, p_best, r_best, thresholds_best, stats_best = segment_based.best_fscore(
         scores=path_scores,
@@ -124,3 +124,5 @@ def get_PSDS(path_groundtruth, path_scores):
         print(' ', 'p:', p_best[cls])
         print(' ', 'r:', r_best[cls])
     print('*****************************\n')
+
+    return f_best['macro_average']
