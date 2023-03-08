@@ -161,16 +161,18 @@ the model uses mel-band energies extracted using a hop length of 200 ms and 64 m
 
 A cross-validation setup is used to evaluate the performance of the baseline system.
 Micro-averaged-scores (ER_m, F1_m) and macro-averaged-score (F1_M) are calculated using [sed-eval](https://tut-arg.github.io/sed_eval/index.html) toolbox 
-segment-based 1 second. Macro-averaged score PSDS (F1_{PSDS}) is calculated using [sed-scores-eval](https://github.com/fgnt/sed_scores_eval) segment-based 1 second. 
+segment-based 1 second. Macro-averaged score class-wise with optimal threshold (F1_{th_op}) is calculated using [sed-scores-eval](https://github.com/fgnt/sed_scores_eval) segment-based 1 second. 
  
     
-	|          |   ER_m   |   F1_m   |    F1_M   |    F1_{PSDS}   |
-	|----------|----------|----------|-----------|----------------|
-	| Baseline |  0.479   |  71.54%  |   35.21%  |    44.13%      |
+	|          |        ER_m        |        F1_m         |        F1_M         |       F1_{th_op}    |
+	|----------|--------------------|---------------------|---------------------|---------------------|
+	| Baseline |  0.487 (+/-0.009)  |  70.34% (+/-0.766)  |  35.83% (+/-0.660)  |  42.87% (+/-0.840)  |
 
                                                                                 
 
 **Note:** The reported system performance is not exactly reproducible due to varying setups. However, you should be able obtain very similar results.
+Results from the table are obtained from training and testing the model 10 times, mean and standard deviation of the performance from these 10 independent trials are shown.
+
 
 
 #### Model size
