@@ -99,7 +99,7 @@ def create_folder(_fold_path):
 def split_in_seqs(data, subdivs):
     if len(data.shape) == 1:
         if data.shape[0] % subdivs:
-            data = data[:-(data.shape[0] % subdivs), :]
+            data = data[:-(data.shape[0] % subdivs)]
         data = data.reshape((data.shape[0] // subdivs, subdivs, 1))
     elif len(data.shape) == 2:
         if data.shape[0] % subdivs:
